@@ -1,0 +1,197 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+float potencia(int a, int b)
+{
+
+    if (b == 0)
+        return 1;
+    else
+        return a * potencia(a, b - 1);
+}
+
+void ordena(long int *v, long int n){
+    
+    long int aux, aux1;
+
+    for(long int j=0; j<10; j++){
+      long int z=0,u=0,d=0,t=0,q=0,c=0,s=0,st=0,o=0,nv=0;
+
+    long int *zero = malloc(n*sizeof(long int));
+    long int *um = malloc(n*sizeof(long int));
+    long int *dois = malloc(n*sizeof(long int));
+    long int *tres = malloc(n*sizeof(long int));
+    long int *quatro = malloc(n*sizeof(long int));
+    long int *cinco = malloc(n*sizeof(long int));
+    long int *seis = malloc(n*sizeof(long int));
+    long int *sete = malloc(n*sizeof(long int));
+    long int *oito = malloc(n*sizeof(long int));
+    long int *nove = malloc(n*sizeof(long int));
+
+        long int k=0, l=0, zeroso=0;
+        aux1 = potencia(10,j);
+        aux = potencia(10,j+1);
+    for(long int i=0; i<n; i++){
+
+        if(v[i]==0){
+          zeroso++;
+          k++;
+        }  
+        else if(((v[i]%aux)/aux1)==0){
+            zero[z]=v[i];
+            z++;
+            k++;
+        }
+        else if(((v[i]%aux)/aux1)==1){
+            um[u]=v[i];
+            u++;
+            k++;
+        }
+        else if(((v[i]%aux)/aux1)==2){
+            dois[d]=v[i];
+            d++;
+            k++;
+        }
+        else if(((v[i]%aux)/aux1)==3){
+            tres[t]=v[i];
+            t++;
+            k++;
+        }
+        else if(((v[i]%aux)/aux1)==4){
+            quatro[q]=v[i];
+            q++;
+            k++;
+        }
+        else if(((v[i]%aux)/aux1)==5){
+            cinco[c]=v[i];
+            c++;
+            k++;
+        }
+        else if(((v[i]%aux)/aux1)==6){
+            seis[s]=v[i];
+            s++;
+            k++;
+        }
+        else if(((v[i]%aux)/aux1)==7){
+            sete[st]=v[i];
+            st++;
+            k++;
+        }
+        else if(((v[i]%aux)/aux1)==8){
+            oito[o]=v[i];
+            o++;
+            k++;
+        }
+        else if(((v[i]%aux)/aux1)==9){
+            nove[nv]=v[i];
+            nv++;
+            k++;
+        }
+    }
+    for(long int i=0; i<zeroso && zeroso!=0; i++){
+      v[l]=0;
+      l++;
+    }
+    for(long int i=0; zero[i]!='\0'; i++){
+      v[l]=zero[i];
+      l++;
+    }
+    for(long int i=0; um[i]!='\0'; i++){
+      v[l]=um[i];
+      l++;
+    }
+    for(long int i=0; dois[i]!='\0'; i++){
+      v[l]=dois[i];
+      l++;
+    }
+    for(long int i=0; tres[i]!='\0'; i++){
+      v[l]=tres[i];
+      l++;
+    }
+    for(long int i=0; quatro[i]!='\0'; i++){
+      v[l]=quatro[i];
+      l++;
+    }
+    for(long int i=0; cinco[i]!='\0'; i++){
+      v[l]=cinco[i];
+      l++;
+    }
+    for(long int i=0; seis[i]!='\0'; i++){
+      v[l]=seis[i];
+      l++;
+    }
+    for(long int i=0; sete[i]!='\0'; i++){
+      v[l]=sete[i];
+      l++;
+    }
+    for(long int i=0; oito[i]!='\0'; i++){
+      v[l]=oito[i];
+      l++;
+    }
+    for(long int i=0; nove[i]!='\0'; i++){
+      v[l]=nove[i];
+      l++;
+    }
+    if(k==0){
+        j=10;
+    }
+    }
+
+}
+
+long int busca(long int *v, long int num, long int n){
+    long int e=-1, d;
+    d=n;
+    while(e<d-1){
+        long int m=(e+d)/2;
+        if(v[m]<num) e=m;
+        else d=m;
+    }
+    return d;
+}
+
+int main(){
+
+    long int n, m, i, num, r;
+    //n=potencia(10,9);
+    scanf("%li %li", &n, &m);
+    long int *v = malloc(n*sizeof(long int));
+    long int *s = malloc(n*sizeof(long int));
+    
+
+    for(i=0; i<n; i++){
+        scanf("%li", &v[i]);
+        s[i]=v[i];
+    }
+    /*for(long int i=0; i<n-1; i++){
+      v[i]=i;
+      s[i]=i;
+    }*/
+    ordena(v, n);
+    /*for(long int i=0; i<n; i++){
+      if(i!=n-1)
+        printf("%ld ", v[i]);
+      else
+        printf("%ld", v[i]);
+    }
+    printf("\n");*/
+    for(long int j=0; j<m; j++){
+        scanf("%li", &num);
+        r = busca(v, num, n);
+        if(num==v[r]){
+            for(long int k=0; k<n; k++){
+                if(num==s[k]){
+                    printf("%li\n", k);
+                    k=n;
+                }
+            }
+        }
+        else{
+            printf("-1\n");
+        }
+    }
+    //free(*v);
+    //free(*s);
+    return 0;
+}
